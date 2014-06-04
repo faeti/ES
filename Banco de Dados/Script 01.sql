@@ -33,6 +33,7 @@ create table voceviu.anuncio (
 	id_localidade int,
 	ob_arquivo blob,
 	fl_aprovado boolean,
+	ds_observacao varchar(200),
 	primary key (id_anuncio),
 	constraint fk__anuncio__localidade foreign key (id_localidade) references voceviu.localidade(id_localidade)
 );
