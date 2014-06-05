@@ -4,6 +4,7 @@ create table voceviu.usuario (
 	id_usuario int auto_increment,
 	nm_usuario varchar(20) not null,
 	ds_senha varchar(10) not null,
+	tp_usuario char(1) not null,
 	primary key (id_usuario)
 );
 
