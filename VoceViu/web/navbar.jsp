@@ -12,8 +12,7 @@
         <nav>
 
             <ul>
-                <li id="active"><a href="IndexServlet" id="current">Posts</a></li>
-                <li><a href="ListaPontosServlet">Listar Pontos</a></li>
+                <li><a href="ListaPontosServlet" id="current">Listar Pontos</a></li>
                 <li><a href="suporteCadastraPonto.jsp">Cadastra Ponto</a></li>
 
             </ul>

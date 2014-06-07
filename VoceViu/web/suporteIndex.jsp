@@ -34,7 +34,6 @@
                         <% int loc = 1; %>
                         <% for (String localidade : localidades) {%>
                             <% if (localidade.equals(localidadeSelecionada)) {%>
-
                             <option name="<%= ("combo" + (loc++))%>" value="<%= localidade%>" selected="selected"><%= localidade%></option>
                             <% } else {%>
                             <option name="<%= ("combo" + (loc++))%>" value="<%= localidade%>"><%= localidade%></option>

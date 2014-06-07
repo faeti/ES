@@ -1,5 +1,15 @@
-
+<%@page import="entidade.personagens.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+    if (usuario != null) {
+        response.sendRedirect("HomeServlet");
+    }
+
+%>
 
 <!DOCTYPE html>
 <html>
@@ -8,14 +18,48 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
+        <div id="tudo">
 
-        <h1>Mock para testes:</h1>
-        * Futuramente aqui será a tela de login <br><br>
-        
-        <a href="ListaPontosServlet">Listar Pontos</a><br>
-        
-        
-        
+
+            <%@ include file="/topo.jsp" %>
+
+            <div id="conteudo">
+                <center>
+                    <h1>Acesso de Usuários</h1>
+
+                    <form method="POST" name="submit" action="LoginServlet">
+
+                        <table class="loginTable">
+                            <tbody>
+                                <tr>
+                                    <td>Login</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="loginUsuario" value="" size="30" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Senha</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="password" name="senhaUsuario" value="" size="30" /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="submit" value="Conectar" name="botaoConectar" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </form>
+                    * links para testes: <br>
+                    <a href="ListaPontosServlet">Listar Pontos</a><br>
+                </center>
+            </div>
+        </div>
     </body>
 </html>
+
+
+
+
 

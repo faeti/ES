@@ -9,7 +9,7 @@
     </head>
     <body>        
         <div class="topo">
-            <img src="img/logo.JPG" width="728" height="221" alt="logo"/>
+            <img src="img/logo.jpg" width="728" height="221" alt="logo"/>
         </div>
     </body>
 </html>
