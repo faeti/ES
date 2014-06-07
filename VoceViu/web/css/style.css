@@ -1,0 +1,240 @@
+/* 
+    Este CSS trabalha itens das paginas (exceto navbar.jsp).
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    text-align: center;
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h1.sub {
+    font-size: 40px;
+    color: #6b727c;
+}
+
+hr.divisor-post {
+    border: #bbb 2px dotted;
+    border-style: none none dotted;
+}
+
+hr.divisor-postedit {
+    padding-bottom: 20px;
+    border: #bbb 2px dotted;
+    border-style: none none dotted;
+}
+
+hr.divisor-rodape {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: #bbb 2px dotted;
+    border-style: none none dotted;
+}
+
+/* --------------------------------------------------------- */
+/* divs */
+
+#tudo {
+    width: 760px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#conteudo {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* --------------------------------------------------------- */
+
+root { 
+    display: block;
+}
+
+tr,td {text-align:left;}
+
+
+table.center {
+    background-color: #ffffff;
+    width:70%; 
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+/* --------------------------------------------------------- */
+/* tabela de posts */
+
+table.postTable {
+    text-align:center; 
+    margin-top: 20px;
+    margin-left:auto; 
+    margin-right:auto; 
+    width: 100%;
+}
+
+table.postTable tr.autor {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+table.postTable tr.info {
+    color: #757575;
+    font-size: 13px;
+}
+
+table.postTable th {
+    font-size: 40px;
+}
+
+/* --------------------------------------------------------- */
+/* tabela de edicao de post */
+
+table.postEditTable {
+    text-align:center; 
+    margin-top: 20px;
+    margin-left:auto; 
+    margin-right:auto; 
+    width: 100%;
+}
+
+table.postEditTable tr.autor {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+table.postEditTable tr.info {
+    color: #757575;
+    font-size: 13px;
+}
+
+table.postEditTable th {
+    font-size: 30px;
+}
+
+table.postEditTable input.id {
+    border: 0px;
+    color: #757575;
+    font-size: 13px;
+}
+
+/* --------------------------------------------------------- */
+/* tabela de usuarios */
+
+table.userTable {
+    text-align:center; 
+    margin-top: 20px;
+    width: 60%;
+}
+
+/* --------------------------------------------------------- */
+/* tabela de login */
+
+table.loginTable {
+    text-align:left; 
+    margin-top: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+
+table.loginTable td {
+    padding-top: 10px;
+    padding-left: 36px;
+    padding-right: 36px;
+}
+
+/* --------------------------------------------------------- */
+/* tabela de login */
+
+table.cadastraUsuarioTable {
+    text-align:left; 
+    margin-top: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 100%;
+}
+
+table.cadastraUsuarioTable td {
+    padding-top: 10px;
+    padding-left: 36px;
+    padding-right: 5px;
+}
+
+table.cadastraUsuarioTable td.mensagem {
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 36px;
+}
+
+table.cadastraUsuarioTable td.inputs {
+    width: 300px;
+}
+
+table.cadastraUsuarioTable input {
+    width: 100%;
+}
+
+table.cadastraUsuarioTable input.radio {
+    width: 5%;
+}
+
+table.cadastraUsuarioTable input.botao {
+    width: 25%;
+}
+
+
+
+/* --------------------------------------------------------- */
+/* tabela de novo post */
+
+table.novoPostTable {
+    text-align:center; 
+    margin-top: 20px;
+    margin-left:auto; 
+    margin-right:auto; 
+    width: 100%;
+}
+
+table.novoPostTable td {
+    padding-top: 10px;
+    padding-left: 36px;
+    padding-right: 36px;
+}
+
+table.novoPostTable input.titulo {
+    width: 100%;
+}
+
+table.novoPostTable textarea {
+    resize:vertical;
+    width: 100%;
+    height: 300px;
+}
+
+/* --------------------------------------------------------- */
+
+/*
+form textarea {
+    width: 100%;
+    height: 400px;
+}
+*/
+/* --------------------------------------------------------- */
+
+.statusPontoDisponivel {
+    color: green;
+    font-weight: bold;
+}
+
+.statusPontoIndisponivel {
+    color: red;
+    font-weight: bold;
+}
