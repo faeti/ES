@@ -1,9 +1,12 @@
 package servlet.suporte;
 
+import controle.ControleLocalidade;
+import entidade.dominio.Localidade;
 import entidade.dominio.Ponto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,16 +41,54 @@ public class ListaPontosServlet extends HttpServlet {
          */
         // mock para teste do servlet
         // futuramente vai pegar os dados do banco
-        HttpSession session = request.getSession();
+        
+         ControleLocalidade controleLocalidade = new ControleLocalidade();
+        
+        if (request.getParameter("botaoAlterar") != null) {
+            
+            HttpSession session = request.getSession();
+            ArrayList<Ponto> pontos = (ArrayList<Ponto>) session.getAttribute("listaDePontos");
+            String idPonto = (String) request.getParameter("idPonto");
+            pontos.add(new Ponto("*" + idPonto, "b", "c"));
+            session.setAttribute("listaDePontos", pontos);
+            response.sendRedirect("suporteIndex.jsp");
+           
+        } else if (request.getParameter("comboLocalidades") != null) {
+            
+            HttpSession session = request.getSession();
+            String localidadeSelecionada = request.getParameter("comboLocalidades");
+            
+            if (localidadeSelecionada.equals("Escolha uma localidade")) {
+                return;
+            } else {
+                ArrayList<String> localidades = (ArrayList<String>) session.getAttribute("listaDeLocalidades");
+                if (localidades.indexOf("Escolha uma localidade") != -1) {
+                    localidades.remove("Escolha uma localidade");
+                    session.setAttribute("listaDeLocalidades", localidades);
+                }
+            }
+            
+            Localidade loc = controleLocalidade.recuperarLocalidade(localidadeSelecionada);
+            List<Ponto> pontos = loc.listarPontos();
+            session.setAttribute("localidadeSelecionada", localidadeSelecionada);
+            session.setAttribute("listaDePontos", pontos);
+            response.sendRedirect("suporteIndex.jsp");
+            
+        } else {
+            
+            HttpSession session = request.getSession();
+            List<Localidade> localidades = controleLocalidade.listarLocalidades();
+            ArrayList<String> nomeLocalidades = new ArrayList<>();
+            nomeLocalidades.add("Escolha uma localidade");
+            
+            for (Localidade loc: localidades) {
+                nomeLocalidades.add(loc.getNome());
+            }
+            
+            session.setAttribute("listaDeLocalidades", nomeLocalidades);            
+            response.sendRedirect("suporteIndex.jsp");
+        }
 
-        ArrayList<Ponto> pontos = new ArrayList<>();
-        pontos.add(new Ponto("P1", "192.169.1.1", "e3:ff:68:ac"));
-        pontos.add(new Ponto("P2", "192.169.1.1", "e3:ff:68:ac"));
-        pontos.add(new Ponto("P3", "192.169.1.1", "e3:ff:68:ac"));
-        pontos.add(new Ponto("P4", "192.169.1.1", "e3:ff:68:ac"));
-
-        session.setAttribute("listaDePontos", pontos);
-        response.sendRedirect("suporteIndex.jsp");
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
