@@ -1,5 +1,5 @@
 
-<%@page import="entidade.personagens.Usuario"%>
+<%@page import="entidade.personagens.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -20,11 +20,15 @@
     </head>
     <body>
 
-        <% if (log) { %>
+        <% if (log) {%>
         <nav>
             <ul>
+                <% if (usu instanceof Suporte) {%>
+                <li><a href="ListaPontosServlet" id="current">Suporte: <%=usu.getNome()%></a></li>
+                    <% } else { %>
                 <li><a href="ListaPontosServlet" id="current">Listar Pontos</a></li>
-                <li><a href="suporteCadastraPonto.jsp">Cadastra Ponto</a></li>
+                    <% } %>
+                <li><a href="LogoutServlet">Sair</a></li>
 
             </ul>
         </nav>
