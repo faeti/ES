@@ -46,6 +46,7 @@ public class HomeServlet extends HttpServlet {
             } else if (usuario instanceof DiretorComercial) {
                 response.sendRedirect("diretorComercialIndex.jsp"); // lembrar de direticonar para servlet
             } else if (usuario instanceof Suporte) {
+                session.setAttribute("primeiroAcesso", true);
                 response.sendRedirect("ListaPontosServlet");
             }
 

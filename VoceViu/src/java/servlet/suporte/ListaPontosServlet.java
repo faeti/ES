@@ -4,7 +4,6 @@ import controle.ControleLocalidade;
 import entidade.dominio.Localidade;
 import entidade.dominio.Ponto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -71,12 +70,34 @@ public class ListaPontosServlet extends HttpServlet {
             session.setAttribute("listaDePontos", pontos);
             response.sendRedirect("suporteIndex.jsp");
 
+        } else if (request.getParameter("botaoExcluir") != null) {
+        
+            HttpSession session = request.getSession();
+            String localidadeSelecionada = (String) session.getAttribute("localidadeSelecionada");
+            
+            String idPonto = (String) request.getParameter("idPonto");
+            String ipPonto = (String) request.getParameter("ipPonto");
+            String macPonto = (String) request.getParameter("macPonto");
+            controleLocalidade.recuperarLocalidade(localidadeSelecionada).removerPonto(idPonto);
+            
+            session.setAttribute("cadastroComSucesso", true);
+            session.setAttribute("tipoDeCadastro", 3);
+            Ponto p = new Ponto(idPonto, ipPonto, macPonto);
+            session.setAttribute("pontoCadastrado", p);
+            response.sendRedirect("suporteCadastraPontoResultado.jsp");
+            
         } else {
 
             HttpSession session = request.getSession();
             List<Localidade> localidades = controleLocalidade.listarLocalidades();
             ArrayList<String> nomeLocalidades = new ArrayList<>();
-            nomeLocalidades.add("Escolha uma localidade");
+            
+            Boolean primeiroAcesso = (Boolean) session.getAttribute("primeiroAcesso");
+            
+            if (primeiroAcesso != null && primeiroAcesso) {
+                nomeLocalidades.add("Escolha uma localidade");
+                session.setAttribute("primeiroAcesso", false);
+            }
 
             for (Localidade loc : localidades) {
                 nomeLocalidades.add(loc.getNome());

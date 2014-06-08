@@ -239,15 +239,34 @@ form textarea {
     height: 400px;
 }
 */
+
 /* --------------------------------------------------------- */
+/* Estilo referente ao usuario Suporte: */
 
 .statusPontoDisponivel {
-    color: green;
+    color: #66cc00;
     font-weight: bold;
 }
 
 .statusPontoIndisponivel {
-    color: red;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.cadastroPontoSucesso {
+    color: #66cc00;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.cadastroPontoSucessoDetalhes {
+    color: #333;
+    font-weight: bold;
+}
+
+.cadastroPontoErro {
+    color: #ff0000;
+    font-size: 22px;
     font-weight: bold;
 }
 

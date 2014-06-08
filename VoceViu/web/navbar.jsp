@@ -25,11 +25,12 @@
             <ul>
                 <% if (usu instanceof Suporte) {%>
                 <li><a href="ListaPontosServlet" id="current">Suporte: <%=usu.getNome()%></a></li>
+                    <% } else if (usu instanceof Administrador) {%>
+                <li><a href="ListaPontosServlet" id="current">Admin: <%=usu.getNome()%></a></li>
                     <% } else { %>
-                <li><a href="ListaPontosServlet" id="current">Listar Pontos</a></li>
+                <li><a href="ListaPontosServlet" id="current">Outro usuario...</a></li>
                     <% } %>
                 <li><a href="LogoutServlet">Sair</a></li>
-
             </ul>
         </nav>
         <% } else { %>

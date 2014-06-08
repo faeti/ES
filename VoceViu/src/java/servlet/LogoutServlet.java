@@ -30,7 +30,6 @@ public class LogoutServlet extends HttpServlet {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
 
         if (usuario != null) {
-            //session.removeAttribute("usuario");
             Enumeration<String> atributos = session.getAttributeNames();
 
             while (atributos.hasMoreElements()) {

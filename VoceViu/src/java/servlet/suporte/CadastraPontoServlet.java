@@ -1,10 +1,8 @@
 package servlet.suporte;
 
 import controle.ControleLocalidade;
-import entidade.dominio.Localidade;
 import entidade.dominio.Ponto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +34,14 @@ public class CadastraPontoServlet extends HttpServlet {
             String ipPonto = (String) request.getParameter("ipPonto");
             String macPonto = (String) request.getParameter("macPonto");
             controleLocalidade.recuperarLocalidade(localidadeDoPonto).cadastraPontos(idPonto, ipPonto, macPonto);
-            response.sendRedirect("suporteIndex.jsp");
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("cadastroComSucesso", true);
+            session.setAttribute("tipoDeCadastro", 1);
+            Ponto p = new Ponto(idPonto, ipPonto, macPonto);
+            session.setAttribute("pontoCadastrado", p);
+            
+            response.sendRedirect("suporteCadastraPontoResultado.jsp");
             
         } else if (request.getParameter("botaoAlterar") != null) {
             
@@ -44,11 +49,15 @@ public class CadastraPontoServlet extends HttpServlet {
             String idPonto = (String) request.getParameter("idPonto");
             String ipPonto = (String) request.getParameter("ipPonto");
             String macPonto = (String) request.getParameter("macPonto");
-            //controleLocalidade.recuperarLocalidade(localidadeDoPonto).cadastraPontos("test", ipPonto, macPonto);
             controleLocalidade.recuperarLocalidade(localidadeDoPonto).atualizarPonto(new Ponto(idPonto, ipPonto, macPonto));
             
+            HttpSession session = request.getSession();
+            session.setAttribute("cadastroComSucesso", true);
+            session.setAttribute("tipoDeCadastro", 2);
+            Ponto p = new Ponto(idPonto, ipPonto, macPonto);
+            session.setAttribute("pontoCadastrado", p);
             
-            response.sendRedirect("suporteIndex.jsp");
+            response.sendRedirect("suporteCadastraPontoResultado.jsp");
             
         }
 

@@ -4,7 +4,11 @@
 <%@page import="entidade.dominio.Ponto"%>
 
 <%
-    boolean logado = true;
+    boolean logado = false;
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if (usuario != null && usuario instanceof Suporte) {
+        logado = true;
+    }
 %>
 
 <% if (logado) {%>
