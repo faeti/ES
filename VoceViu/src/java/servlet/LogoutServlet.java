@@ -1,8 +1,9 @@
-
 package servlet;
 
 import entidade.personagens.Usuario;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,15 +25,21 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            HttpSession session = request.getSession();
-            Usuario usuario = (Usuario) session.getAttribute("usuario");
 
-            if (usuario != null) {
-                session.removeAttribute("usuario");
+        HttpSession session = request.getSession();
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if (usuario != null) {
+            //session.removeAttribute("usuario");
+            Enumeration<String> atributos = session.getAttributeNames();
+
+            while (atributos.hasMoreElements()) {
+                String nomeAtributo = (String) atributos.nextElement();
+                session.removeAttribute(nomeAtributo);
             }
-            
-            response.sendRedirect("index.jsp");
+        }
+
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
