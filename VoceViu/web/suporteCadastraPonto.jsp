@@ -17,18 +17,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
-        <script language="javascript">
-
-            function validaNull() {
-                if (document.getElementById("idPonto").value === "" ||
-                        document.getElementById("ipPonto").value === "" ||
-                        document.getElementById("macPonto").value === "") {
-                    alert("Título e Texto devem ser preenchidos");
-                    return false;
-                }
-                return true;
-            }
-        </script>
     </head>
     <body>
 
@@ -52,29 +40,29 @@
 
                     Identificacao do Ponto: <br>
                     <% if (ponto != null) {%>
-                    <input type="text" name="idPonto" size="30" value="<%=ponto.getId()%>" /> <br>
+                    <input type="text" id="idPonto" name="idPonto" size="30" value="<%=ponto.getId()%>" /> <br>
                     <% } else { %>
-                    <input type="text" name="idPonto" size="30" value="" /> <br>
+                    <input type="text" id="idPonto" name="idPonto" size="30" value="" /> <br>
                     <% }%>
 
                     IP: <br>
                     <% if (ponto != null) {%>
-                    <input type="text" name="ipPonto" size="30" value="<%=ponto.getIP()%>" /> <br>
+                    <input type="text" id="ipPonto" name="ipPonto" size="30" value="<%=ponto.getIP()%>" /> <br>
                     <% } else { %>
-                    <input type="text" name="ipPonto" size="30" value="" /> <br>
+                    <input type="text" id="ipPonto" name="ipPonto" size="30" value="" /> <br>
                     <% }%>
 
                     MAC: <br>
                     <% if (ponto != null) {%>
-                    <input type="text" name="macPonto" size="30" value="<%=ponto.getMAC()%>" /> <br>
+                    <input type="text" id="macPonto" name="macPonto" size="30" value="<%=ponto.getMAC()%>" /> <br>
                     <% } else { %>
-                    <input type="text" name="macPonto" size="30" value="" /> <br>
+                    <input type="text" id="macPonto" name="macPonto" size="30" value="" /> <br>
                     <% }%>
 
                     <br>
                     <% String botaoSalvar = (ponto == null ? "botaoSalvar" : "botaoAlterar");%>
-                    <input type="submit" value="Salvar" name="<%=botaoSalvar%>" class="botao" onclick="return validaNull()" />
-                    <input type="submit" value="Cancelar" name="botaoCancelar" class="botao" />
+                    <input type="submit" value="Salvar" name="<%=botaoSalvar%>" class="botao" onclick="return validaCamposCadastroPonto()" />
+                    <input type="button" value="Cancelar" name="botaoCancelar" class="botao" />
                 </form>
 
                 <hr class="divisor-post">
@@ -87,4 +75,4 @@
 
 <% } else {
         response.sendRedirect("index.jsp");
-   }%>
+    }%>

@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/topo.css"/>
         <title>VocêViu: mídia digital</title>
+        <script src="script/script.js"></script>
     </head>
     <body>        
         <div class="topo">
