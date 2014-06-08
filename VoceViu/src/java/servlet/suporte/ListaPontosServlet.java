@@ -29,35 +29,32 @@ public class ListaPontosServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        /*
-         // testa se usuario esta logado
-         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        
-         if (usuario == null) {
-         response.sendRedirect("login.jsp");
-        
-         return;
-         }
-         */
         // mock para teste do servlet
         // futuramente vai pegar os dados do banco
+        ControleLocalidade controleLocalidade = ControleLocalidade.getInstance();
         
-         ControleLocalidade controleLocalidade = new ControleLocalidade();
-        
-        if (request.getParameter("botaoAlterar") != null) {
+        if (request.getParameter("botaoAdicionarPonto") != null) {
             
             HttpSession session = request.getSession();
-            ArrayList<Ponto> pontos = (ArrayList<Ponto>) session.getAttribute("listaDePontos");
-            String idPonto = (String) request.getParameter("idPonto");
-            pontos.add(new Ponto("*" + idPonto, "b", "c"));
-            session.setAttribute("listaDePontos", pontos);
-            response.sendRedirect("suporteIndex.jsp");
-           
-        } else if (request.getParameter("comboLocalidades") != null) {
+            session.removeAttribute("pontoEditado");
+            response.sendRedirect("suporteCadastraPonto.jsp");
             
+        } else if (request.getParameter("botaoAlterar") != null) {
+
+            HttpSession session = request.getSession();
+            String localidadeSelecionada = (String) session.getAttribute("localidadeSelecionada");
+            String ipPonto = (String) request.getParameter("ipPonto");
+            String macPonto = (String) request.getParameter("macPonto");
+            Localidade loc = controleLocalidade.recuperarLocalidade(localidadeSelecionada);
+            Ponto ponto = loc.recuperarPonto(ipPonto, macPonto);
+            session.setAttribute("pontoEditado", ponto);
+            response.sendRedirect("suporteCadastraPonto.jsp");
+
+        } else if (request.getParameter("comboLocalidades") != null) {
+
             HttpSession session = request.getSession();
             String localidadeSelecionada = request.getParameter("comboLocalidades");
-            
+
             if (localidadeSelecionada.equals("Escolha uma localidade")) {
                 return;
             } else {
@@ -67,25 +64,25 @@ public class ListaPontosServlet extends HttpServlet {
                     session.setAttribute("listaDeLocalidades", localidades);
                 }
             }
-            
+
             Localidade loc = controleLocalidade.recuperarLocalidade(localidadeSelecionada);
             List<Ponto> pontos = loc.listarPontos();
             session.setAttribute("localidadeSelecionada", localidadeSelecionada);
             session.setAttribute("listaDePontos", pontos);
             response.sendRedirect("suporteIndex.jsp");
-            
+
         } else {
-            
+
             HttpSession session = request.getSession();
             List<Localidade> localidades = controleLocalidade.listarLocalidades();
             ArrayList<String> nomeLocalidades = new ArrayList<>();
             nomeLocalidades.add("Escolha uma localidade");
-            
-            for (Localidade loc: localidades) {
+
+            for (Localidade loc : localidades) {
                 nomeLocalidades.add(loc.getNome());
             }
-            
-            session.setAttribute("listaDeLocalidades", nomeLocalidades);            
+
+            session.setAttribute("listaDeLocalidades", nomeLocalidades);
             response.sendRedirect("suporteIndex.jsp");
         }
 

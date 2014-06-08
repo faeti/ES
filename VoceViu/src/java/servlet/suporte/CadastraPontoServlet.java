@@ -1,5 +1,8 @@
 package servlet.suporte;
 
+import controle.ControleLocalidade;
+import entidade.dominio.Localidade;
+import entidade.dominio.Ponto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -7,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "CadastraPontoServlet", urlPatterns = {"/CadastraPontoServlet"})
 public class CadastraPontoServlet extends HttpServlet {
@@ -23,9 +27,29 @@ public class CadastraPontoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (request.getParameter("botaoCadastrar") != null) {
-            System.out.println("CadastraPontoServlet.processRequest()");
-            response.sendRedirect("index.jsp");
+        ControleLocalidade controleLocalidade = ControleLocalidade.getInstance();
+        
+        if (request.getParameter("botaoSalvar") != null) {
+            
+            String localidadeDoPonto = (String) request.getParameter("localidadeDoPonto");
+            String idPonto = (String) request.getParameter("idPonto");
+            String ipPonto = (String) request.getParameter("ipPonto");
+            String macPonto = (String) request.getParameter("macPonto");
+            controleLocalidade.recuperarLocalidade(localidadeDoPonto).cadastraPontos(idPonto, ipPonto, macPonto);
+            response.sendRedirect("suporteIndex.jsp");
+            
+        } else if (request.getParameter("botaoAlterar") != null) {
+            
+            String localidadeDoPonto = (String) request.getParameter("localidadeDoPonto");
+            String idPonto = (String) request.getParameter("idPonto");
+            String ipPonto = (String) request.getParameter("ipPonto");
+            String macPonto = (String) request.getParameter("macPonto");
+            //controleLocalidade.recuperarLocalidade(localidadeDoPonto).cadastraPontos("test", ipPonto, macPonto);
+            controleLocalidade.recuperarLocalidade(localidadeDoPonto).atualizarPonto(new Ponto(idPonto, ipPonto, macPonto));
+            
+            
+            response.sendRedirect("suporteIndex.jsp");
+            
         }
 
     }

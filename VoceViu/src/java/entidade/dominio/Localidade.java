@@ -31,4 +31,27 @@ public class Localidade {
     public List<Ponto> listarPontos() {
         return pontos;
     }
+    
+    public Ponto recuperarPonto(String IP, String MAC) {
+        Ponto ponto = null;
+        
+        for (Ponto p: pontos) {
+            if (p.getIP().equals(IP) && p.getMAC().equals(MAC)) {
+                ponto = p;
+                break;
+            }
+        }
+            
+        return ponto;
+    }
+    
+    public void atualizarPonto(Ponto ponto) {
+        for (Ponto p: pontos) {
+            if (p.getId().equals(ponto.getId())) {
+                pontos.remove(p);
+                pontos.add(ponto);
+                break;
+            }
+        }
+    }
 }

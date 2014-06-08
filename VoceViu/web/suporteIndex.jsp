@@ -29,7 +29,7 @@
                 <% String localidadeSelecionada = (String) session.getAttribute("localidadeSelecionada"); %>
 
                 <form method="POST" name="cb" action="ListaPontosServlet">
-                    <select name="comboLocalidades" onChange="cb.submit();">
+                    <select class="comboBoxLocalidade" name="comboLocalidades" onChange="cb.submit();">
                         <% ArrayList<String> localidades = (ArrayList<String>) session.getAttribute("listaDeLocalidades"); %>
                         <% int loc = 1; %>
                         <% for (String localidade : localidades) {%>
@@ -40,14 +40,17 @@
                             <% } %>
                         <% }%>
                     </select>
+                    <% if (localidadeSelecionada != null) { %>
+                    <input type="submit" value="Adicionar Ponto Nesta Localidade" name="botaoAdicionarPonto" />
+                    <% } %>
                 </form>
 
                 <% ArrayList<Ponto> pontos = (ArrayList<Ponto>) session.getAttribute("listaDePontos"); %>
                 <% if (pontos != null) {%>
-
+                
                 <h3 class="sub">Pontos:</h3>
 
-                <table class="userTable">
+                <table class="userTable" cellpadding="3" cellspacing="0">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -59,10 +62,14 @@
                     </thead>
                     <tbody>
 
+                        <% int i = 0; %>
                         <% for (Ponto p : pontos) {%>
 
-
-                        <tr>
+                        <% if (i++ % 2 == 0) { %>
+                            <tr bgcolor="#fff">
+                        <% } else { %>
+                            <tr bgcolor="#eee">
+                        <% } %>
                             <td><%= p.getId()%></td>
                             <td><%= p.getIP()%></td>
                             <td><%= p.getMAC()%></td>
@@ -70,6 +77,8 @@
                             <td>
                                 <form method="POST" name="submit" action="ListaPontosServlet">
                                     <input type="hidden" name="idPonto" value="<%= p.getId()%>" />
+                                    <input type="hidden" name="ipPonto" value="<%= p.getIP()%>" />
+                                    <input type="hidden" name="macPonto" value="<%= p.getMAC()%>" />
                                     <input type="submit" value="Alterar" name="botaoAlterar" class="botao" />
                                     <input type="submit" value="Excluir" name="botaoExcluir" class="botao" />
                                 </form>
