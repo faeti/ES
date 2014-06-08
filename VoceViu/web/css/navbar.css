@@ -5,7 +5,7 @@
 nav {
     margin: 0;
     padding: 0;
-    position:relative;
+    position: relative;
     font-weight: bold;
     z-index: 1;
 }
@@ -19,9 +19,10 @@ nav ul li:hover > ul {
 }
 
 nav ul {
-    text-align:center;
+    height: 40px;
+    text-align: center;
     width: 100%;
-    background: #efefef; 
+    background: #4b545f; 
     margin:0;
     padding:0;
     list-style: none;
@@ -41,18 +42,18 @@ nav ul li {
 }
 
 nav ul li:hover {
-    background: #4b545f;
+    background: #fff;
 }
 
 nav ul li:hover a {
-    color: #fff;
+    color: #4b545f;
 }
 
 nav ul li a {
     display: block;
     padding: 10px 30px;
     margin: 0;
-    color: #757575;
+    color: #fff;
     text-decoration: none;
 }
 

@@ -22,10 +22,11 @@
 
 
             <%@ include file="/topo.jsp" %>
+            <%@ include file="/navbar.jsp" %>
 
             <div id="conteudo">
                 <center>
-                    <h1>Acesso de Usuários</h1>
+                    <h2>Acesso de Usuários</h2>
 
                     <form method="POST" name="submit" action="LoginServlet">
 
