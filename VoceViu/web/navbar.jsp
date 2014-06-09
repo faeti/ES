@@ -24,11 +24,12 @@
         <nav>
             <ul>
                 <% if (usu instanceof Suporte) {%>
-                <li><a href="ListaPontosServlet" id="current">Suporte: <%=usu.getNome()%></a></li>
+                <li><a href="ListaPontosServlet">Suporte: <%=usu.getNome()%></a></li>
                     <% } else if (usu instanceof Administrador) {%>
                 <li><a href="ListaPontosServlet" id="current">Admin: <%=usu.getNome()%></a></li>
+                <li><a href="ListaPontosServlet">Confirmar Pagamento</a></li>
                     <% } else { %>
-                <li><a href="ListaPontosServlet" id="current">Outro usuario...</a></li>
+                <li><a href="ListaPontosServlet">Outro usuario...</a></li>
                     <% } %>
                 <li><a href="LogoutServlet">Sair</a></li>
             </ul>
