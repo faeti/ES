@@ -40,9 +40,10 @@
 
                     Identificacao do Ponto: <br>
                     <% if (ponto != null) {%>
-                    <input type="text" id="idPonto" name="idPonto" size="30" value="<%=ponto.getId()%>" /> <br>
+                    <input type="text" id="idPonto" name="idPonto" size="30" value="<%=ponto.getId()%>" onkeyup="numeroMaxCaracteres(this, 10)" /> <br>
                     <% } else { %>
-                    <input type="text" id="idPonto" name="idPonto" size="30" value="" /> <br>
+                    <input type="text" id="idPonto" name="idPonto" size="30" value="" onkeyup="numeroMaxCaracteres(this, avisoIdPonto.id, 10)" />
+                    <span id="avisoIdPonto" class="avisoCadastroPonto"></span><br>
                     <% }%>
 
                     IP: <br>

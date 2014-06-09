@@ -270,6 +270,10 @@ form textarea {
     font-weight: bold;
 }
 
+.avisoCadastroPonto {
+    color: #ff0000;
+}
+
 .comboBoxLocalidade {
     width: 250px;
 }
