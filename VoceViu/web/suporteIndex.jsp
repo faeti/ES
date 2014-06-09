@@ -80,11 +80,11 @@
                             <td><span class="statusPontoDisponivel">disponível</span></td>
                             <td>
                                 <form method="POST" name="submit" action="ListaPontosServlet">
-                                    <input type="hidden" name="idPonto" value="<%= p.getId()%>" />
-                                    <input type="hidden" name="ipPonto" value="<%= p.getIP()%>" />
-                                    <input type="hidden" name="macPonto" value="<%= p.getMAC()%>" />
+                                    <input type="hidden" id="idPonto" name="idPonto" value="<%= p.getId()%>" />
+                                    <input type="hidden" id="ipPonto" name="ipPonto" value="<%= p.getIP()%>" />
+                                    <input type="hidden" id="macPonto" name="macPonto" value="<%= p.getMAC()%>" />
                                     <input type="submit" value="Alterar" name="botaoAlterar" class="botao" />
-                                    <input type="submit" value="Excluir" name="botaoExcluir" class="botao" />
+                                    <input type="submit" value="Excluir" name="botaoExcluir" class="botao" onclick="return confirmaExcluirPonto()" />
                                 </form>
                             </td>
                         </tr>

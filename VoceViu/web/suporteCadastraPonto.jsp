@@ -63,7 +63,7 @@
                     <br>
                     <% String botaoSalvar = (ponto == null ? "botaoSalvar" : "botaoAlterar");%>
                     <input type="submit" value="Salvar" name="<%=botaoSalvar%>" class="botao" onclick="return validaCamposCadastroPonto()" />
-                    <input type="button" value="Cancelar" name="botaoCancelar" class="botao" />
+                    <input type="submit" value="Cancelar" name="botaoCancelar" class="botao" onclick="return cancelaCamposCadastroPonto()" />
                 </form>
 
                 <hr class="divisor-post">

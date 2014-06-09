@@ -59,6 +59,10 @@ public class CadastraPontoServlet extends HttpServlet {
             
             response.sendRedirect("suporteCadastraPontoResultado.jsp");
             
+        } else if (request.getParameter("botaoCancelar") != null) {
+            
+            response.sendRedirect("suporteIndex.jsp");
+            
         }
 
     }
