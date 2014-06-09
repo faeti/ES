@@ -1,8 +1,14 @@
 package controle;
 
+import banco.ESDataBase;
+import entidade.personagens.Pessoa;
 import entidade.personagens.Usuario;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ControleUsuario {
 
@@ -21,7 +27,47 @@ public class ControleUsuario {
     }
 
     public Usuario recuperarUsuario(String login) {
-        // acessa banco de dados e recupera usuario pelo login
+        ESDataBase dataBase = new ESDataBase();
+        
+        String sql = 
+            "Select "+
+                    "u.id_usuario, "+
+                    "u.nm_usuario, "+
+                    "u.ds_senha, "+
+                    "p.id_pessoa, "+
+                    "p.nm_pessoa, "+
+                    "p.ds_email, "+
+                    "p.ds_telefone, "+
+                    "p.dt_nascimento "+
+
+            "from voceviu.usuario u "+
+                    "join voceviu.pessoa p on p.id_pessoa = p.id_pessoa "+
+
+            "where "+
+                    "u.nm_usuario = ''"+ login +"''";
+        
+        try {
+            
+            Usuario usuario;
+            try (ResultSet rs = dataBase.stmt.executeQuery(sql)) {
+                rs.beforeFirst();
+                usuario = null;
+                while (rs.next()) {
+                    usuario = new Usuario(
+                            rs.getString("nm_pessoa"),
+                            rs.getString("ds_email"),
+                            rs.getString("ds_telefone"),
+                            rs.getDate("dt_nascimento"));
+                    usuario.setLogin(rs.getString("nm_usuario"));
+                    usuario.setSenha(rs.getString("ds_senha"));
+                }
+            }
+            
+            return usuario;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return null;
     }
