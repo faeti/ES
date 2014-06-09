@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         ControleUsuario controle = new ControleUsuario();
-        //Usuario usuario = controle.recuperarUsuario(request.getParameter("loginUsuario"));
+        Usuario usuario = controle.recuperarUsuario(request.getParameter("loginUsuario"));
                 
         //Usuario usuario = new Administrador("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"));
         //Usuario usuario = new DiretorComercial("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"));
