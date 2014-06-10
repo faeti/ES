@@ -1,7 +1,9 @@
 package controle;
 
 import banco.ESDataBase;
-import entidade.personagens.Pessoa;
+import entidade.personagens.Administrador;
+import entidade.personagens.Cliente;
+import entidade.personagens.DiretorComercial;
 import entidade.personagens.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,7 +56,21 @@ public class ControleUsuario {
                 rs.first();
                 
                 while (rs.next()) {
-                    usuario = new Usuario();
+                    switch (rs.getString("tp_usuario")) {
+                        case "A":
+                            usuario = new Administrador();
+                            break;
+                        case "D":
+                            usuario = new DiretorComercial();
+                            break;
+                        case "C":
+                            usuario = new Cliente();
+                            break;
+                        default:
+                            usuario = new Usuario();
+                            break;
+                    }
+                    
                     usuario.setNome(rs.getString("nm_pessoa"));
                     usuario.setEmail(rs.getString("ds_email"));
                     usuario.setTelefone(rs.getString("ds_telefone"));

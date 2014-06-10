@@ -39,6 +39,8 @@ public class HomeServlet extends HttpServlet {
 
         } else { // senao, redirecionar ele para sua pagina principal
 
+            
+            
             if (usuario instanceof Administrador) {
                 response.sendRedirect("adminIndex.jsp"); // lembrar de direticonar para servlet
             } else if (usuario instanceof Cliente) {
