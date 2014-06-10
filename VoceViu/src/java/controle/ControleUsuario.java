@@ -44,14 +44,15 @@ public class ControleUsuario {
                     "join voceviu.pessoa p on p.id_pessoa = p.id_pessoa "+
 
             "where "+
-                    "u.nm_usuario = ''"+ login +"''";
+                    "u.nm_usuario = '"+ login +"'";
         
         try {
             
             Usuario usuario;
             try (ResultSet rs = dataBase.stmt.executeQuery(sql)) {
-                rs.beforeFirst();
+                rs.first();
                 usuario = null;
+                
                 while (rs.next()) {
                     usuario = new Usuario(
                             rs.getString("nm_pessoa"),

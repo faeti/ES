@@ -33,13 +33,17 @@ public class LoginServlet extends HttpServlet {
         
         ControleUsuario controle = new ControleUsuario();
         Usuario usuario = controle.recuperarUsuario(request.getParameter("loginUsuario"));
-                
-        //Usuario usuario = new Administrador("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"));
-        //Usuario usuario = new DiretorComercial("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"));
-        //Usuario usuario = new Cliente("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"), "Florianopolis", "001.001/1", 0);
         
-        session.setAttribute("usuario", usuario);
-        response.sendRedirect("HomeServlet");   // direciona para pagina do usuario (por tipo)
+        if (usuario != null) {
+            if (usuario.getSenha().equals(request.getParameter("senhaUsuario"))) {
+                //Usuario usuario = new Administrador("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"));
+                //Usuario usuario = new DiretorComercial("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"));
+                //Usuario usuario = new Cliente("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"), "Florianopolis", "001.001/1", 0);
+
+                session.setAttribute("usuario", usuario);
+                response.sendRedirect("HomeServlet");   // direciona para pagina do usuario (por tipo)
+            } 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
