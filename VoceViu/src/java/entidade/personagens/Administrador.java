@@ -10,8 +10,8 @@ public class Administrador extends Usuario {
     //private ControleLocalidade controleLocalidade;
     //private ControlePagamento controlePagamento;
     
-    public Administrador(String nome, String email, String telefone, Date dataDeNascimento) {
-        super(nome, email, telefone, dataDeNascimento);
+    public Administrador() {
+
     }
     
     public void cadastarAnuncio(Anuncio anuncio) {

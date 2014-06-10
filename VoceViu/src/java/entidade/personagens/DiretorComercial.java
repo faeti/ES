@@ -5,8 +5,8 @@ import java.util.Date;
 
 public class DiretorComercial extends Usuario {
 
-    public DiretorComercial(String nome, String email, String telefone, Date dataDeNascimento) {
-        super(nome, email, telefone, dataDeNascimento);
+    public DiretorComercial() {
+        super();
     }
  
     public void validarVeiculacao(/*Veiculacao veiculacao,*/ boolean valido) {

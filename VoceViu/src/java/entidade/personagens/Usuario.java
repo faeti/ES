@@ -7,8 +7,8 @@ public class Usuario extends Pessoa {
     protected String login;
     protected String senha;
 
-    public Usuario(String nome, String email, String telefone, Date dataDeNascimento) {
-        super(nome, email, telefone, dataDeNascimento);
+    public Usuario() {
+        super();
     }
 
     public String getLogin() {

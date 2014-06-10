@@ -9,11 +9,7 @@ public class Pessoa {
     protected String telefone;
     protected Date dataDeNascimento;
 
-    public Pessoa(String nome, String email, String telefone, Date dataDeNascimento) {
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.dataDeNascimento = dataDeNascimento;
+    public Pessoa() {
     }
 
     public String getNome() {

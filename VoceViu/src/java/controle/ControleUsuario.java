@@ -34,6 +34,7 @@ public class ControleUsuario {
                     "u.id_usuario, "+
                     "u.nm_usuario, "+
                     "u.ds_senha, "+
+                    "u.tp_usuario, "+
                     "p.id_pessoa, "+
                     "p.nm_pessoa, "+
                     "p.ds_email, "+
@@ -48,17 +49,16 @@ public class ControleUsuario {
         
         try {
             
-            Usuario usuario;
+            Usuario usuario = null;
             try (ResultSet rs = dataBase.stmt.executeQuery(sql)) {
                 rs.first();
-                usuario = null;
                 
                 while (rs.next()) {
-                    usuario = new Usuario(
-                            rs.getString("nm_pessoa"),
-                            rs.getString("ds_email"),
-                            rs.getString("ds_telefone"),
-                            rs.getDate("dt_nascimento"));
+                    usuario = new Usuario();
+                    usuario.setNome(rs.getString("nm_pessoa"));
+                    usuario.setEmail(rs.getString("ds_email"));
+                    usuario.setTelefone(rs.getString("ds_telefone"));
+                    usuario.setDataDeNascimento(rs.getDate("dt_nascimento"));
                     usuario.setLogin(rs.getString("nm_usuario"));
                     usuario.setSenha(rs.getString("ds_senha"));
                 }

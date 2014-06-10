@@ -8,12 +8,8 @@ public class Cliente extends Usuario {
     private String CNPJ;
     private int id;
 
-    public Cliente(String nome, String email, String telefone, Date dataDeNascimento,
-            String cidade, String CNPJ, int id) {
-        super(nome, email, telefone, dataDeNascimento);
-        this.cidade = cidade;
-        this.CNPJ = CNPJ;
-        this.id = id;
+    public Cliente() {
+        super();
     }
 
     public String getCidade() {
