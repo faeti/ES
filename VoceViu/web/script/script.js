@@ -1,5 +1,5 @@
 /* ............................................................... */
-/* funções genéricas:*/
+/* funções genéricas: */
 
 function numeroMaxCaracteres(componente, componenteAviso, tamanho) {
     var valor = componente.value;
@@ -20,7 +20,22 @@ function numeroMaxCaracteres(componente, componenteAviso, tamanho) {
 }
 
 /* ............................................................... */
+/* validação campos de aprovação de pagamento: */
+/* ............................................................... */
+
+function confirmaAprovarPagamento() {
+    var clienteAnuncio = document.getElementById("clienteAnuncio");
+    var tituloAnuncio = document.getElementById("tituloAnuncio");
+    var idAnuncio = document.getElementById("idAnuncio");
+
+    var dados = clienteAnuncio.value + " - " + tituloAnuncio.value + " - " + idAnuncio.value;
+
+    return confirm("Deseja confirmar pagamento para este anúncio?\n\n" + dados);
+}
+
+/* ............................................................... */
 /* validação campos de cadastro de ponto: */
+/* ............................................................... */
 
 function validaCamposCadastroPonto() {
     var idPonto = document.getElementById("idPonto");
@@ -110,9 +125,9 @@ function confirmaExcluirPonto() {
     var idPonto = document.getElementById("idPonto");
     var ipPonto = document.getElementById("ipPonto");
     var macPonto = document.getElementById("macPonto");
-    
+
     var ponto = idPonto.value + " - " + ipPonto.value + " - " + macPonto.value;
-    
+
     return confirm("Deseja excluir este registro?\n\n" + ponto);
 }
 
