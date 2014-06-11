@@ -10,10 +10,9 @@
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario != null && usuario instanceof DiretorComercial) {
         logado = true;
-    }
-    
+    }    
     //teste sem BD
-    //logado = true;
+    logado = true;
 %>
 
 <% if (logado) {%>
@@ -50,10 +49,12 @@
                         </thead>
                         <tbody>
 
-                            <% ControleVeiculacao anuncios = new ControleVeiculacao();  %>                                                
-                            <% int i = 0; %>
+                            <% ControleVeiculacao anuncios = ControleVeiculacao.getInstance();%>                                                                                                       
+                            <% int i = 0; %>                                 
                             <% for (Anuncio a : anuncios.listarTodasVeiculacoes()) {%>
-
+                            
+                            <% if (!a.isAprovado()){ %>                                                            
+                            
                             <% if (i++ % 2 == 0) { %>
                                 <tr bgcolor="#fff">
                             <% } else { %>
@@ -74,7 +75,7 @@
                                     </form>
                                 </td>
                             </tr>
-
+                            <% }%>
                             <% }%>
                             
                         </tbody>
