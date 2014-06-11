@@ -1,5 +1,6 @@
 package entidade.dominio;
 
+import entidade.personagens.Cliente;
 import java.io.File;
 import java.util.Date;
 
@@ -12,9 +13,13 @@ public class Anuncio {
     private String titulo;
     private String descricao;
     private int id;
-
+    private Localidade localidade;
+    private Cliente cliente;
+    
     public Anuncio() {
         aprovado = false;
+        this.localidade = new Localidade();
+        this.cliente = new Cliente();
     }
 
     public boolean isAprovado() {
@@ -72,4 +77,34 @@ public class Anuncio {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Localidade getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(Localidade localidade) {
+        this.localidade = localidade;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
+    @Override
+    public String toString(){
+       
+        return "Anúncio:" +
+                "\nTitulo: " + this.getTitulo() + 
+                "\nId:" + this.getId() + 
+                "\nDescricao: " + this.getDescricao() + 
+                "\nData de início: " + this.getDataInicio() +
+                "\nNúmero de meses: " + this.getNumeroMeses() + 
+                "\n\nLocalidade: \n" + this.getLocalidade().toString() + 
+                "\n\nCliente: " + this.getCliente().toString();
+    }
+    
 }
