@@ -1,10 +1,8 @@
 package servlet;
 
 import controle.ControleUsuario;
-import entidade.personagens.*;
 import entidade.personagens.Usuario;
 import java.io.IOException;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +25,6 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // usuario mock: aqui futuramente ira a verificacao de 
-        // login no banco de dados. 
         HttpSession session = request.getSession();
         
         ControleUsuario controle = new ControleUsuario();
@@ -36,13 +32,11 @@ public class LoginServlet extends HttpServlet {
         
         if (usuario != null) {
             if (usuario.getSenha().equals(request.getParameter("senhaUsuario"))) {
-                //Usuario usuario = new Administrador("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"));
-                //Usuario usuario = new DiretorComercial("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"));
-                //Usuario usuario = new Cliente("Diogo", "diogo@voceviu.com.br", "4434-4433", new Date("07/08/1980"), "Florianopolis", "001.001/1", 0);
-
                 session.setAttribute("usuario", usuario);
-                response.sendRedirect("HomeServlet");   // direciona para pagina do usuario (por tipo)
-            } 
+                response.sendRedirect("HomeServlet");
+            } else {
+                response.sendRedirect("LogoutServlet");
+            }
         }
     }
 
