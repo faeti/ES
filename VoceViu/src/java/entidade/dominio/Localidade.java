@@ -11,6 +11,12 @@ public class Localidade {
     private final String nome;
     private final int id;
 
+    public Localidade(){
+      this.pontos = new ArrayList<>();
+      this.nome = null;
+      this.id = 0;
+    }
+    
     public Localidade(String nome, int id) {
         this.pontos = new ArrayList<>();
         this.nome = nome;
@@ -76,6 +82,12 @@ public class Localidade {
                 return p1.getId().compareTo(p2.getId());
             }
         });
+    }
+    
+    @Override
+    public String toString(){
+        return "Nome: " + this.getNome() +
+                "\nID: " + this.getId();
     }
 }
 

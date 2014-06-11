@@ -35,4 +35,10 @@ public class Cliente extends Usuario {
     public void setId(int id) {
         this.id = id;
     }
+    
+        @Override
+    public String toString(){
+        return "CNPJ: " + this.getCNPJ() +
+                "\nID: " + this.getId();
+    }
 }
