@@ -34,10 +34,10 @@ public class LoginServlet extends HttpServlet {
             if (usuario.getSenha().equals(request.getParameter("senhaUsuario"))) {
                 session.setAttribute("usuario", usuario);
                 response.sendRedirect("HomeServlet");
+            } else {
+                response.sendRedirect("LogoutServlet");
             }
         }
-        
-        response.sendRedirect("LogoutServlet");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
