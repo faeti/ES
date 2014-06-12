@@ -15,11 +15,13 @@ public class Anuncio {
     private int id;
     private Localidade localidade;
     private Cliente cliente;
+    private Pagamento pagamento;
     
     public Anuncio() {
         aprovado = false;
         this.localidade = new Localidade();
         this.cliente = new Cliente();
+        this.pagamento = new Pagamento();
     }
 
     public boolean isAprovado() {
@@ -30,6 +32,14 @@ public class Anuncio {
         this.aprovado = aprovado;
     }
 
+    public boolean isPago() {
+        return pagamento.isPago();
+    }
+    
+    public void setPago(boolean pago) {
+        pagamento.setPago(pago);
+    }
+    
     public File getArquivoMedia() {
         return arquivoMedia;
     }
@@ -105,6 +115,20 @@ public class Anuncio {
                 "\nNúmero de meses: " + this.getNumeroMeses() + 
                 "\n\nLocalidade: \n" + this.getLocalidade().toString() + 
                 "\n\nCliente: " + this.getCliente().toString();
+    }
+
+    /**
+     * @return the pagamento
+     */
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    /**
+     * @param pagamento the pagamento to set
+     */
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
     }
     
 }

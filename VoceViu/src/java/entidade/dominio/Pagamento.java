@@ -7,6 +7,13 @@ public class Pagamento {
     private final int id;
     private double valor;
     
+    private static int counter = 1;
+    
+    public Pagamento() {
+        pago = false;
+        id = counter++;
+    }
+    
     public Pagamento(int id, double valor) {
         pago = false;
         this.id = id;

@@ -23,7 +23,6 @@ public class ControleVeiculacao {
     public ControleVeiculacao(){
         this.listaDeAnuncios = new ArrayList<>();
         mock();
-   
     }
    
     public static ControleVeiculacao getInstance(){
@@ -47,7 +46,7 @@ public class ControleVeiculacao {
         this.listaDeAnuncios.add(a1);
         
         Anuncio a2 = new Anuncio();
-        Localidade l2 = new Localidade("Shopping Beira-Mar", 1);
+        Localidade l2 = new Localidade("Shopping Continente", 2);
         a2.setLocalidade(l2);
         a2.setId(1);
         a2.setDescricao("Esta é a descrição do anúncio 2");
@@ -58,7 +57,7 @@ public class ControleVeiculacao {
         this.listaDeAnuncios.add(a2);
         
         Anuncio a3 = new Anuncio();  
-        Localidade l3 = new Localidade("Shopping Itaguaçu", 1);
+        Localidade l3 = new Localidade("Shopping Itaguaçu", 3);
         a3.setLocalidade(l3);
         a3.setId(1);
         a3.setDescricao("Esta é a descrição do anúncio 3");
@@ -66,7 +65,7 @@ public class ControleVeiculacao {
         a3.setTitulo("Este é o título do anúncio 3");        
         a3.setId(3);
         a3.getCliente().setId(30);    
-        this.listaDeAnuncios.add(a3);   
+        this.listaDeAnuncios.add(a3);
         
     }
     
@@ -93,7 +92,7 @@ public class ControleVeiculacao {
         ArrayList<Anuncio> veiculacoesPorLocalidade = new ArrayList<>();
        
         for (Anuncio a: this.listaDeAnuncios){
-            if (a.getLocalidade().equals(localidade))
+            if (a.getLocalidade().getNome().equals(localidade.getNome()))
                 veiculacoesPorLocalidade.add(a);           
         }
        

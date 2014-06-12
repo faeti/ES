@@ -6,6 +6,8 @@
 package servlet.admin;
 
 import controle.ControleLocalidade;
+import controle.ControleVeiculacao;
+import entidade.dominio.Anuncio;
 import entidade.dominio.Localidade;
 import entidade.dominio.Ponto;
 import java.io.IOException;
@@ -41,13 +43,40 @@ public class ListaPagamentosServlet extends HttpServlet {
         // mock para teste do servlet
         // futuramente vai pegar os dados do banco
         ControleLocalidade controleLocalidade = ControleLocalidade.getInstance();
+        ControleVeiculacao controleVeiculacao = ControleVeiculacao.getInstance();
+        
         HttpSession session = request.getSession();
         
         if (session.getAttribute("primeiroAcesso") == null) {
             session.setAttribute("primeiroAcesso", true);
         }
         
-        if (request.getParameter("comboLocalidades") != null) {
+        if (request.getParameter("botaoAprovarPagamento") != null) {
+        
+            //String localidadeSelecionada = (String) session.getAttribute("localidadeSelecionada");
+            String idAnuncio = (String) request.getParameter("idAnuncio");
+            Anuncio anuncio = controleVeiculacao.recuperarVeiculacao(Integer.parseInt(idAnuncio));
+            anuncio.setPago(true);
+            controleVeiculacao.atualizarVeiculacao(anuncio);
+            
+            List<Localidade> localidades = controleLocalidade.listarLocalidades();
+            ArrayList<String> nomeLocalidades = new ArrayList<>();
+
+            Boolean primeiroAcesso = (Boolean) session.getAttribute("primeiroAcesso");
+
+            if (primeiroAcesso != null && primeiroAcesso) {
+                nomeLocalidades.add("Escolha uma localidade");
+                session.setAttribute("primeiroAcesso", false);
+            }
+
+            for (Localidade loc : localidades) {
+                nomeLocalidades.add(loc.getNome());
+            }
+
+            session.setAttribute("listaDeLocalidades", nomeLocalidades);
+            response.sendRedirect("adminAprovarPagamento.jsp");
+            
+        } else if (request.getParameter("comboLocalidades") != null) {
 
             String localidadeSelecionada = request.getParameter("comboLocalidades");
 
@@ -62,9 +91,17 @@ public class ListaPagamentosServlet extends HttpServlet {
             }
 
             Localidade loc = controleLocalidade.recuperarLocalidade(localidadeSelecionada);
-            List<Ponto> pontos = loc.listarPontos();
+            List<Anuncio> todosAnuncios = controleVeiculacao.listarVeiculacoesPorLocalidade(loc);
+            ArrayList<Anuncio> anuncios = new ArrayList<>();
+            
+            for (Anuncio a: todosAnuncios) {
+                if (!a.isPago()) {
+                    anuncios.add(a);
+                }
+            }
+            
             session.setAttribute("localidadeSelecionada", localidadeSelecionada);
-            session.setAttribute("listaDePontos", pontos);
+            session.setAttribute("listaDeAnuncios", anuncios);
             response.sendRedirect("adminAprovarPagamento.jsp");
         
         } else {

@@ -14,7 +14,7 @@ public class ESDataBase {
     static final String DB_URL = "jdbc:mysql://localhost/voceviu";
 
     static final String USER = "root";
-    static final String PASS = "Rafael123";
+    static final String PASS = "1234";
 
     public Connection conn;
     public Statement stmt;
